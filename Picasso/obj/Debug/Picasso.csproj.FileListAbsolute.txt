@@ -1,0 +1,10 @@
+C:\Users\SCNerd\Desktop\David Backup 8-26-10\My Dropbox\VS Projects\Picasso\Picasso\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\SCNerd\Desktop\David Backup 8-26-10\My Dropbox\VS Projects\Picasso\Picasso\bin\Debug\Picasso.dll
+C:\Users\SCNerd\Desktop\David Backup 8-26-10\My Dropbox\VS Projects\Picasso\Picasso\bin\Debug\Picasso.pdb
+C:\Users\SCNerd\Desktop\David Backup 8-26-10\My Dropbox\VS Projects\Picasso\Picasso\obj\Debug\Picasso.dll
+C:\Users\SCNerd\Desktop\David Backup 8-26-10\My Dropbox\VS Projects\Picasso\Picasso\obj\Debug\Picasso.pdb
+C:\Users\SCNerd\Desktop\David Backup 8-26-10\My Dropbox\VS Projects\Picasso\Picasso\bin\Debug\Basic_Geo.dll
+C:\Users\SCNerd\Desktop\David Backup 8-26-10\My Dropbox\VS Projects\Picasso\Picasso\bin\Debug\Basic_Geo.pdb
+C:\Users\SCNerd\Desktop\David Backup 8-26-10\My Dropbox\VS Projects\Picasso\Picasso\obj\Debug\Picasso.ProgressDisplay.resources
+C:\Users\SCNerd\Desktop\David Backup 8-26-10\My Dropbox\VS Projects\Picasso\Picasso\obj\Debug\GenerateResource.read.1.tlog
+C:\Users\SCNerd\Desktop\David Backup 8-26-10\My Dropbox\VS Projects\Picasso\Picasso\obj\Debug\GenerateResource.write.1.tlog

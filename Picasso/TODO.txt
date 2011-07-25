@@ -1,0 +1,7 @@
+﻿TODO
+Add progress reporting
+Add logging ability to master and children
+Enforce Z-index
+
+Add log analyzing
+Add new generation
