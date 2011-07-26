@@ -18,9 +18,12 @@ using System.Threading.Tasks;
  * when doing the final complication of the image, it might be helpful to analyze where the how the
  * shapes originally look, with image noise and everything, to produce a more realistic result.
  * 
- * This file's purpose: 
+ * This file's purpose: This is a generic log writer. I wrote it just for this program,
+ * so it might be a bit specialized without me noticing it.
  * 
- * Comments:
+ * Comments: I know this whole project is open source, but with this code file I (DMS) withdraw any
+ * copyright of any kind. Please use this code file wherever you want, and don't feel the need to mention me.
+ * It's just a generic class.
  * Bugs: 
  * 
  */

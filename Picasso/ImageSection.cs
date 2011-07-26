@@ -16,7 +16,7 @@ using System.Drawing;
  * when doing the final complication of the image, it might be helpful to analyze where the how the
  * shapes originally look, with image noise and everything, to produce a more realistic result.
  * 
- * This file's purpose: 
+ * This file's purpose: To define a random-alpha chunk of an image. Meant to be created by the corresponding factory.
  * 
  * Comments:
  * Bugs: 

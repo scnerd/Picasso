@@ -19,7 +19,9 @@ using System.IO;
  * when doing the final complication of the image, it might be helpful to analyze where the how the
  * shapes originally look, with image noise and everything, to produce a more realistic result.
  * 
- * This file's purpose: 
+ * This file's purpose: The master is does all the administrative and initial work.
+ * It takes a filepath of a picture, copies that picture into a subdirectory with the log,
+ * and then kicks the whole process off once requested to.
  * 
  * Comments:
  * Bugs: 

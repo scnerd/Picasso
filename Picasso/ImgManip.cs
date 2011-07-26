@@ -16,7 +16,8 @@ using System.Drawing;
  * when doing the final complication of the image, it might be helpful to analyze where the how the
  * shapes originally look, with image noise and everything, to produce a more realistic result.
  * 
- * This file's purpose: 
+ * This file's purpose: To perform basic, standard operations on the master image.
+ * Namely, this reduces the image to a limited set of colors and a standard resolution.
  * 
  * Comments:
  * Bugs: 

@@ -8,3 +8,11 @@ C:\Users\SCNerd\Desktop\David Backup 8-26-10\My Dropbox\VS Projects\Picasso\Pica
 C:\Users\SCNerd\Desktop\David Backup 8-26-10\My Dropbox\VS Projects\Picasso\Picasso\obj\Debug\Picasso.ProgressDisplay.resources
 C:\Users\SCNerd\Desktop\David Backup 8-26-10\My Dropbox\VS Projects\Picasso\Picasso\obj\Debug\GenerateResource.read.1.tlog
 C:\Users\SCNerd\Desktop\David Backup 8-26-10\My Dropbox\VS Projects\Picasso\Picasso\obj\Debug\GenerateResource.write.1.tlog
+C:\Users\SCNerd\Picasso\Picasso\bin\Debug\Picasso.dll
+C:\Users\SCNerd\Picasso\Picasso\bin\Debug\Picasso.pdb
+C:\Users\SCNerd\Picasso\Picasso\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\SCNerd\Picasso\Picasso\obj\Debug\Picasso.ProgressDisplay.resources
+C:\Users\SCNerd\Picasso\Picasso\obj\Debug\GenerateResource.read.1.tlog
+C:\Users\SCNerd\Picasso\Picasso\obj\Debug\GenerateResource.write.1.tlog
+C:\Users\SCNerd\Picasso\Picasso\obj\Debug\Picasso.dll
+C:\Users\SCNerd\Picasso\Picasso\obj\Debug\Picasso.pdb

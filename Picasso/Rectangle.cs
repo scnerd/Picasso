@@ -16,7 +16,8 @@ using System.Drawing;
  * when doing the final complication of the image, it might be helpful to analyze where the how the
  * shapes originally look, with image noise and everything, to produce a more realistic result.
  * 
- * This file's purpose: 
+ * This file's purpose: To define a simple 4-point polygon. Note that this is technically a quadrilateral, not a rectangle.
+ * This file also defines the Polygon class.
  * 
  * Comments:
  * Bugs: 

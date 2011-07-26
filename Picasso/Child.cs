@@ -22,7 +22,13 @@ using System.Threading.Tasks;
  * when doing the final complication of the image, it might be helpful to analyze where the how the
  * shapes originally look, with image noise and everything, to produce a more realistic result.
  * 
- * This file's purpose: 
+ * This file's purpose: This is one of the most important pieces, because it
+ * is the definition of a basic shape. It takes a image section with arbitrarily
+ * selected pixels and tries to find the closest possible corresponding geometric
+ * shape. That shape has a single color. When looking for children within a child,
+ * note that it retrieves the original pixels from the master. This is because
+ * the child's image section has been reduced to a single color, so the original
+ * detail is needed to most effectively break the child into sub-children.
  * 
  * Comments:
  * Bugs: 

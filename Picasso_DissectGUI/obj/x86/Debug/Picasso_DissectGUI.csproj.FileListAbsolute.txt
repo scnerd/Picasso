@@ -9,3 +9,14 @@ C:\Users\SCNerd\Desktop\David Backup 8-26-10\My Dropbox\VS Projects\Picasso\Pica
 C:\Users\SCNerd\Desktop\David Backup 8-26-10\My Dropbox\VS Projects\Picasso\Picasso_DissectGUI\bin\Debug\Picasso.pdb
 C:\Users\SCNerd\Desktop\David Backup 8-26-10\My Dropbox\VS Projects\Picasso\Picasso_DissectGUI\obj\x86\Debug\Picasso_DissectGUI.exe
 C:\Users\SCNerd\Desktop\David Backup 8-26-10\My Dropbox\VS Projects\Picasso\Picasso_DissectGUI\obj\x86\Debug\Picasso_DissectGUI.pdb
+C:\Users\SCNerd\Picasso\Picasso_DissectGUI\obj\x86\Debug\Picasso_DissectGUI.exe
+C:\Users\SCNerd\Picasso\Picasso_DissectGUI\obj\x86\Debug\Picasso_DissectGUI.pdb
+C:\Users\SCNerd\Picasso\Picasso_DissectGUI\bin\Debug\Picasso_DissectGUI.exe
+C:\Users\SCNerd\Picasso\Picasso_DissectGUI\bin\Debug\Picasso_DissectGUI.pdb
+C:\Users\SCNerd\Picasso\Picasso_DissectGUI\bin\Debug\Picasso.dll
+C:\Users\SCNerd\Picasso\Picasso_DissectGUI\bin\Debug\Picasso.pdb
+C:\Users\SCNerd\Picasso\Picasso_DissectGUI\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\SCNerd\Picasso\Picasso_DissectGUI\obj\x86\Debug\Picasso_DissectGUI.MainWindow.resources
+C:\Users\SCNerd\Picasso\Picasso_DissectGUI\obj\x86\Debug\Picasso_DissectGUI.Properties.Resources.resources
+C:\Users\SCNerd\Picasso\Picasso_DissectGUI\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\SCNerd\Picasso\Picasso_DissectGUI\obj\x86\Debug\GenerateResource.write.1.tlog

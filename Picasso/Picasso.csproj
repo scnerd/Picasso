@@ -64,12 +64,14 @@
     <None Include="Diagram.cd" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Basic_Geo\Basic_Geo.csproj">
-      <Project>{CE45B5F2-6672-4113-A136-FB3C4DD8372B}</Project>
-      <Name>Basic_Geo</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
+    <Content Include="Test Images\22.jpg" />
+    <Content Include="Test Images\foto01.jpg" />
+    <Content Include="Test Images\picasso-donna_con_cappello_verde.jpg" />
+    <Content Include="Test Images\PRIMARY_TEST_THIS.jpg" />
+    <Content Include="Test Images\portrait2.jpg" />
+    <Content Include="Test Images\rembrandt.1669.jpg" />
+    <Content Include="Test Images\Rembrandt_aux_yeux_hagards.jpg" />
+    <Content Include="Test Images\the-tell-tale-heart-joshua-south.jpg" />
     <Content Include="TODO.txt" />
   </ItemGroup>
   <ItemGroup>
