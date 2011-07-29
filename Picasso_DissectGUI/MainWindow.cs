@@ -33,15 +33,26 @@ namespace Picasso_DissectGUI
             picDisplay.Image = BaseImg;
         }
 
+        Stopwatch Watch;
         private void btnMaster_Click(object sender, EventArgs e)
         {
-            M = new Master(ImgPath);
-            int ChildrenCount;
-            Stopwatch Watch = new Stopwatch();
+            List<Form> SubForms = new List<Form>();
+            //Action<Form, Form> AddForm = (v, f) => { v = f; SubForms.Add(v); };
+            Func<Func<Form>, Form> NewForm = c => { Form f = c(); SubForms.Add(f); return f; };
+            M = new Master(ImgPath, AddForm, this);
+            //int ChildrenCount;
+            Watch = new Stopwatch();
+            Action A = M.GenerateChildren;
+            System.Threading.Tasks.Task T = new System.Threading.Tasks.Task(A);
+            //System.Threading.Thread Th = new System.Threading.Thread(new System.Threading.ThreadStart(A));
             Watch.Start();
-            M.GenerateChildren(out ChildrenCount);
+            T.Start();
+        }
+
+        private void ThreadDone()
+        {
             Watch.Stop();
-            MessageBox.Show("Generated " + ChildrenCount + " in " + Watch.ElapsedMilliseconds + " ms");
+            //MessageBox.Show("Generated " + ChildrenCount + " in " + Watch.ElapsedMilliseconds + " ms");
             DisplayMaster(Master.RenderState.FullOverlay);
         }
 

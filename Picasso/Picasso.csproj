@@ -48,6 +48,12 @@
     <Compile Include="ImageSection.cs" />
     <Compile Include="ImageSectionFactory.cs" />
     <Compile Include="ImgManip.cs" />
+    <Compile Include="ImgSecDisplay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImgSecDisplay.Designer.cs">
+      <DependentUpon>ImgSecDisplay.cs</DependentUpon>
+    </Compile>
     <Compile Include="LogWriter.cs" />
     <Compile Include="Master.cs" />
     <Compile Include="ProgressDisplay.cs">
@@ -75,6 +81,9 @@
     <Content Include="TODO.txt" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ImgSecDisplay.resx">
+      <DependentUpon>ImgSecDisplay.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ProgressDisplay.resx">
       <DependentUpon>ProgressDisplay.cs</DependentUpon>
     </EmbeddedResource>

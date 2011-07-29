@@ -34,6 +34,10 @@ namespace Picasso
         //Also, note, that it's mColorMap[x][y][color#], so outer array is columns, inner is rows
         private int mForgive, mDetail;
         private System.Drawing.Rectangle mSize;
+        private System.Timers.Timer mVisualReport;
+        private frmImgSecDisplay mVisDisplay;
+        private Action<Point[]> Update;
+        private Action Show, Close;
 
         /// <summary>
         /// 
@@ -46,6 +50,31 @@ namespace Picasso
             mForgive = ColorForgiveness;
             mDetail = ColorDetail;
             mSize = new System.Drawing.Rectangle(Initial, new Size());
+        }
+
+        internal ImageSectionFactory(Point Initial, int ColorForgiveness, int ColorDetail, frmImgSecDisplay Display)
+            : this(Initial, ColorForgiveness, ColorDetail)
+        {
+            mVisualReport = new System.Timers.Timer(1000d);
+            mVisualReport.Elapsed += new System.Timers.ElapsedEventHandler(mVisualReport_Elapsed);
+            mVisDisplay = Display;
+            Show = new Action(mVisDisplay.Show);
+            Update = Add => mVisDisplay.DisplayImage(Master.sMaster.OriginalPixels(Add));
+            Close = new Action(mVisDisplay.CloseSafe);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void mVisualReport_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            lock (mAddedPixels)
+            {
+                //Update(mAddedPixels.ToArray());
+                Update.Invoke(mAddedPixels.ToArray());
+            }
         }
 
         /// <summary>
@@ -204,27 +233,28 @@ namespace Picasso
         /// </summary>
         private void GenerateSize()
         {
-            int MinX, MinY, MaxX, MaxY;
-            //Initialize with just something
-            if(mAddedPixels.Count > 0)
-            {
-                MinX = MaxX = mAddedPixels[0].X;
-                MinY = MaxY = mAddedPixels[0].Y;
-            }
-            else
-            {
-                mSize = new System.Drawing.Rectangle();
-                return;
-            }
-            Action<Point> Checks = p => 
-            { MinX = Math.Min(MinX, p.X); MinY = Math.Min(MinY, p.Y); MaxX = Math.Max(MaxX, p.X); MaxY = Math.Max(MaxY, p.Y); };
+            mSize = Constants.PtsToRect(mAddedPixels.ToArray());
+            //int MinX, MinY, MaxX, MaxY;
+            ////Initialize with just something
+            //if(mAddedPixels.Count > 0)
+            //{
+            //    MinX = MaxX = mAddedPixels[0].X;
+            //    MinY = MaxY = mAddedPixels[0].Y;
+            //}
+            //else
+            //{
+            //    mSize = new System.Drawing.Rectangle();
+            //    return;
+            //}
+            //Action<Point> Checks = p => 
+            //{ MinX = Math.Min(MinX, p.X); MinY = Math.Min(MinY, p.Y); MaxX = Math.Max(MaxX, p.X); MaxY = Math.Max(MaxY, p.Y); };
 
-            for (int i = 1; i < mAddedPixels.Count; i++) //Start with 1, because we've already pulled the first point
-            {
-                Checks(mAddedPixels[i]);
-            }
+            //for (int i = 1; i < mAddedPixels.Count; i++) //Start with 1, because we've already pulled the first point
+            //{
+            //    Checks(mAddedPixels[i]);
+            //}
 
-            mSize = new System.Drawing.Rectangle(MinX, MinY, MaxX - MinX + 1, MaxY - MinY + 1);
+            //mSize = new System.Drawing.Rectangle(MinX, MinY, MaxX - MinX + 1, MaxY - MinY + 1);
         }
 
         /// <summary>
@@ -257,6 +287,11 @@ namespace Picasso
         /// <returns></returns>
         internal ImageSection Recognize(ref ImageSection Graphic, int x, int y)
         {
+            if (mVisualReport != null && mVisDisplay != null)
+            {
+                Show.Invoke();
+                mVisualReport.Start();
+            }
             //We've got something, so now scan to find adjacent pixels.
             //Step 1: diagonal, down-right to get a general square shape
             //Step 2: right from each of diag's to fill right side
@@ -290,16 +325,16 @@ namespace Picasso
                     LatestAdds = new List<Point>();
                     foreach (Point p in CurrentTesting)
                     {
-                        if (p.X - 1 >= 0 && !AllTested.Contains(new Point(p.X - 1, p.Y)) && !LatestAdds.Contains(new Point(p.X - 1, p.Y)))
+                        if (p.X - 1 >= 0 && !LatestAdds.Contains(new Point(p.X - 1, p.Y)) && !AllTested.Contains(new Point(p.X - 1, p.Y)))
                             if (CheckAdd(Graphic.GetPixel(p.X - 1, p.Y), new Point(p.X - 1, p.Y)))
                                 LatestAdds.Add(new Point(p.X - 1, p.Y));
-                        if (p.Y - 1 >= 0 && !AllTested.Contains(new Point(p.X, p.Y - 1)) && !LatestAdds.Contains(new Point(p.X - 1, p.Y)))
+                        if (p.Y - 1 >= 0 && !LatestAdds.Contains(new Point(p.X, p.Y - 1)) && !AllTested.Contains(new Point(p.X, p.Y - 1)))
                             if (CheckAdd(Graphic.GetPixel(p.X, p.Y - 1), new Point(p.X, p.Y - 1)))
                                 LatestAdds.Add(new Point(p.X, p.Y - 1));
-                        if (p.X + 1 >= 0 && !AllTested.Contains(new Point(p.X + 1, p.Y)) && !LatestAdds.Contains(new Point(p.X - 1, p.Y)))
+                        if (p.X + 1 >= 0 && !LatestAdds.Contains(new Point(p.X + 1, p.Y)) && !AllTested.Contains(new Point(p.X + 1, p.Y)))
                             if (CheckAdd(Graphic.GetPixel(p.X + 1, p.Y), new Point(p.X + 1, p.Y)))
                                 LatestAdds.Add(new Point(p.X + 1, p.Y));
-                        if (p.Y + 1 >= 0 && !AllTested.Contains(new Point(p.X, p.Y + 1)) && !LatestAdds.Contains(new Point(p.X - 1, p.Y)))
+                        if (p.Y + 1 >= 0 && !LatestAdds.Contains(new Point(p.X, p.Y + 1)) && !AllTested.Contains(new Point(p.X, p.Y + 1)))
                             if (CheckAdd(Graphic.GetPixel(p.X, p.Y + 1), new Point(p.X, p.Y + 1)))
                                 LatestAdds.Add(new Point(p.X, p.Y + 1));
                     }
@@ -310,6 +345,11 @@ namespace Picasso
             //Almost done
             //
             this.SubtractFrom(ref Graphic);
+            if (mVisualReport != null && mVisDisplay != null)
+            {
+                mVisualReport.Stop();
+                Close.Invoke();
+            }
             return this.Generate();
 
             //

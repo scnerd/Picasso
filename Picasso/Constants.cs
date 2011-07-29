@@ -39,5 +39,19 @@ namespace Picasso
             (Child, Parent) => Math.Sqrt(((double)Child.Width / (double)Parent.Width + (double)Child.Height / (double)Parent.Height) / 2d);
         internal static readonly Func<int, int, double> CalcFit =
             (Selected, Unselected) => (double)(Selected - Unselected) / (double)Selected;
+        internal static readonly Func<Point[], System.Drawing.Rectangle> PtsToRect =
+            (Pts) =>
+            {
+                if (Pts == null || Pts.Length == 0) return new System.Drawing.Rectangle();
+                int MinX = Pts[0].X, MaxX = Pts[0].X, MinY = Pts[0].Y, MaxY = Pts[0].Y;
+                foreach (Point p in Pts)
+                {
+                    MinX = Math.Min(MinX, p.X);
+                    MaxX = Math.Max(MaxX, p.X);
+                    MinY = Math.Min(MinY, p.Y);
+                    MaxY = Math.Max(MaxY, p.Y);
+                }
+                return new System.Drawing.Rectangle(MinX, MinY, MaxX - MinX + 1, MaxY - MinY + 1);
+            };
     }
 }

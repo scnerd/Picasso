@@ -80,6 +80,10 @@ namespace Picasso
     {
         #region Statics
 
+        internal static Master sMaster;
+        internal static Func<Func<System.Windows.Forms.Form>, System.Windows.Forms.Form> sAddable;
+        internal static System.Windows.Forms.Form sInvokable;
+
         private static int NEXTID;
         public static int GetID
         {
@@ -125,7 +129,8 @@ namespace Picasso
         /// <param name="ImageFile"></param>
         public Master(string ImageFile)
         {
-            Child.sMaster = this;
+            //Child.sMaster = this;
+            Master.sMaster = this;
             // Copy image to a set, standard location
             // Generate a log file there
             ID = GetID;
@@ -138,15 +143,22 @@ namespace Picasso
             //mLeftover = (Bitmap)mBaseImage.Clone();
         }
 
+        public Master(string ImageFile, Func<Func<System.Windows.Forms.Form>, System.Windows.Forms.Form> Adder, System.Windows.Forms.Form Invokable)
+            : this(ImageFile)
+        {
+            sAddable = Adder;
+            sInvokable = Invokable;
+        }
+
         #region Steps
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="Count"></param>
-        public void GenerateChildren(out int Count)
+        public void GenerateChildren()
         {
-            Count = 0;
+            //int Count = 0;
 #if GUIOUTPUT
             double Prog = 0d;
             ProgressDisplay Disp = new ProgressDisplay();
@@ -167,12 +179,12 @@ namespace Picasso
 #if GUIOUTPUT
             Prog = 0.5d;
 #endif
-            Count += mChildren.Length;
+            //Count += mChildren.Length;
             double Scale;
             foreach (Child c in mChildren)
             {
                 Scale = Constants.GetScale(((ImageSection)c).Size, this.Size);
-                c.GenerateSubChildren((int)(Scale * mColorForgive), (int)(Scale * mColorDetail), mMinMargin, ref Count);
+                c.GenerateSubChildren((int)(Scale * mColorForgive), (int)(Scale * mColorDetail), mMinMargin);
 #if GUIOUTPUT
                 Prog += 1d / (double)mChildren.Count() * 0.5d;
 #endif
@@ -316,6 +328,25 @@ namespace Picasso
             Bitmap Clip = new Bitmap(Base.Size.Width, Base.Size.Height);
             Graphics.FromImage(Clip).DrawImageUnscaledAndClipped(mBaseImage, new System.Drawing.Rectangle(Base.Location, Base.Size));
             return new ImageSection(Base.Location, Clip, Base.Alpha, Color.Empty);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Pts"></param>
+        /// <returns></returns>
+        internal Bitmap OriginalPixels(Point[] Pts)
+        {
+            System.Drawing.Rectangle Size = Constants.PtsToRect(Pts);
+            Bitmap B = new Bitmap(mBaseImage.Width, mBaseImage.Height);
+            foreach (Point p in Pts)
+                B.SetPixel(p.X, p.Y, mBaseImage.GetPixel(p.X, p.Y));
+            return B;
+        }
+
+        public Child[] Children
+        {
+            get { return mChildren; }
         }
     }
 }

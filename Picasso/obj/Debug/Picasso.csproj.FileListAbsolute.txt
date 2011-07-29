@@ -16,3 +16,4 @@ C:\Users\SCNerd\Picasso\Picasso\obj\Debug\GenerateResource.read.1.tlog
 C:\Users\SCNerd\Picasso\Picasso\obj\Debug\GenerateResource.write.1.tlog
 C:\Users\SCNerd\Picasso\Picasso\obj\Debug\Picasso.dll
 C:\Users\SCNerd\Picasso\Picasso\obj\Debug\Picasso.pdb
+C:\Users\SCNerd\Picasso\Picasso\obj\Debug\Picasso.frmImgSecDisplay.resources

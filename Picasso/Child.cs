@@ -57,7 +57,7 @@ namespace Picasso
         protected Point[] mVertices;
         protected int mZIndex;
         private Child mParent;
-        internal static Master sMaster = null;
+        //internal static Master sMaster = null;
         private Child[] mSubChildren;
 
         private static List<Func<ImageSection, double>> sRegisteredChecks = new List<Func<ImageSection, double>>();
@@ -84,16 +84,16 @@ namespace Picasso
         /// <param name="ScaledDetail"></param>
         /// <param name="MinMargin"></param>
         /// <param name="Count"></param>
-        internal void GenerateSubChildren(int ScaledForgive, int ScaledDetail, int MinMargin, ref int Count, int ZIndex = 0)
+        internal void GenerateSubChildren(int ScaledForgive, int ScaledDetail, int MinMargin, int ZIndex = 0)
         {
             mZIndex = ZIndex;
-            mSubChildren = Child.ScanImageSection(sMaster.OriginalPixels(this.mImgSec), ScaledForgive, ScaledDetail, MinMargin, this);
-            Count += mSubChildren.Length;
+            mSubChildren = Child.ScanImageSection(Master.sMaster.OriginalPixels(this.mImgSec), ScaledForgive, ScaledDetail, MinMargin, this);
+            //Count += mSubChildren.Length;
             double Scale;
             foreach (Child c in mSubChildren)
             {
                 Scale = Constants.GetScale(c.mImgSec.Size, this.mImgSec.Size);
-                c.GenerateSubChildren((int)(Scale * ScaledForgive), (int)(Scale * ScaledDetail), MinMargin, ref Count, ZIndex+1);
+                c.GenerateSubChildren((int)(Scale * ScaledForgive), (int)(Scale * ScaledDetail), MinMargin, ZIndex+1);
             }
         }
 
@@ -167,6 +167,8 @@ namespace Picasso
 #if GUIOUTPUT
             mScannedPx = 0;
             int MaxSize = ImgSec.Width * ImgSec.Height;
+            frmImgSecDisplay DisplayOut = null;
+            Master.sInvokable.Invoke(Master.sAddable, new Func<System.Windows.Forms.Form>({return new frmImgSecDisplay();}), DisplayOut);
 #endif
             //Break the image into ImageSections
             List<ImageSection> Sections = new List<ImageSection>();
@@ -177,7 +179,11 @@ namespace Picasso
                 {
                     if (ImgSec.GetPixel(x, y).A == byte.MaxValue)
                     {
-                        Factory = new ImageSectionFactory(new Point(x, y), ColorForgive, ColorDetail);
+                        Factory = new ImageSectionFactory(new Point(x, y), ColorForgive, ColorDetail
+#if GUIOUTPUT
+                            ,DisplayOut
+#endif
+                            );
                         Sections.Add(Factory.Recognize(ref ImgSec, x, y));
 #if GUIOUTPUT
                         UpdateDisplay((mScannedPx += Factory.SelectedPixels().Count()), MaxSize, 0);
@@ -240,6 +246,9 @@ namespace Picasso
             foreach (Child c in mSubChildren)
                 c.Draw(g);
         }
+
+        public Child[] Children
+        { get { return mSubChildren; } }
 
     }
 }
