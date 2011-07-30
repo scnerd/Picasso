@@ -1,5 +1,5 @@
 ﻿#define GUIOUTPUT
-#define MULTITHREAD
+//#define MULTITHREAD
 
 using System;
 using System.Collections.Generic;
@@ -45,6 +45,9 @@ namespace Picasso
         static Child()
         {
             mDisp.Show();
+            RegisterChild((c, i) => new Rectangle(c, i), new Func<ImageSection, double>(Rectangle.ApproxFit));
+            RegisterChild((c, i) => new Triangle(c, i), new Func<ImageSection, double>(Triangle.ApproxFit));
+            RegisterChild((c, i) => new Ellipse(c, i), new Func<ImageSection, double>(Ellipse.ApproxFit));
         }
 
         static void UpdateDisplay(int Scanned, int Tot, int NewChild)
@@ -110,19 +113,19 @@ namespace Picasso
                 + "Size:\t" + this.mImgSec.Size.ToString() + Constants.EOL;
         }
 
-        ///// <summary>
-        ///// 
-        ///// </summary>
+        /// <summary>
+        /// 
+        /// </summary>
         //static Child()
         //{
-        //    if (sMaster == null)
-        //        throw new TypeInitializationException("Child", new Exception("Set the static field mMaster before instantiating any children"));
+        //    //if (Master.sMaster == null)
+        //    //    throw new TypeInitializationException("Child", new Exception("Set the static field mMaster before instantiating any children"));
         //    //sRegisteredChecks.Add(new Func<ImageSection, double>(Rectangle.ApproxFit));
         //    //sRegisteredChecks.Add(new Func<ImageSection, double>(Triangle.ApproxFit));
         //    //sRegisteredChecks.Add(new Func<ImageSection, double>(Ellipse.ApproxFit));
-        //    RegisterChild((c, i) => new Rectangle(c, i), new Func<ImageSection, double>(Rectangle.ApproxFit));
-        //    RegisterChild((c, i) => new Triangle(c, i), new Func<ImageSection, double>(Triangle.ApproxFit));
-        //    RegisterChild((c, i) => new Ellipse(c, i), new Func<ImageSection, double>(Ellipse.ApproxFit));
+        //    //RegisterChild((c, i) => new Rectangle(c, i), new Func<ImageSection, double>(Rectangle.ApproxFit));
+        //    //RegisterChild((c, i) => new Triangle(c, i), new Func<ImageSection, double>(Triangle.ApproxFit));
+        //    //RegisterChild((c, i) => new Ellipse(c, i), new Func<ImageSection, double>(Ellipse.ApproxFit));
         //}
 
         /// <summary>

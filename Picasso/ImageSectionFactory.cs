@@ -30,6 +30,8 @@ namespace Picasso
     public class ImageSectionFactory
     {
 
+        private const int TICKER = 30;
+
         //private Point mBase;
         private List<Point> mAddedPixels = new List<Point>();
         private List<List<byte[]>> mColorMap = new List<List<byte[]>>(); // Each is byte[4], ARGB. A = 255 means selected, < 255 means not
@@ -57,7 +59,7 @@ namespace Picasso
         internal ImageSectionFactory(Point Initial, int ColorForgiveness, int ColorDetail, frmImgSecDisplay Display)
             : this(Initial, ColorForgiveness, ColorDetail)
         {
-            mVisualReport = new System.Timers.Timer(1000d);
+            mVisualReport = new System.Timers.Timer((double)TICKER);
             mVisualReport.Elapsed += new System.Timers.ElapsedEventHandler(mVisualReport_Elapsed);
             mVisDisplay = Display;
             Show = new Action(mVisDisplay.Show);

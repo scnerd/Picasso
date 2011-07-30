@@ -44,7 +44,7 @@ namespace Picasso
         /// <returns></returns>
         internal new static double ApproxFit(ImageSection ImgSec)
         {
-            return Area(GenerateCorners(ImgSec).ToArray());
+            return ImgSec.PixelsUsed().Length / Area(GenerateCorners(ImgSec).ToArray());
         }
 
         /// <summary>
@@ -64,10 +64,11 @@ namespace Picasso
                     int Bordering = 0;
                     foreach (Point q in Pts)
                     {
-                        if (Math.Abs(p.X - q.X) == 1 || Math.Abs(p.Y - q.Y) == 1) Bordering++;
-                        if (Bordering >= 3) break;
+                        //It only counts as bordering if they are adjacent, not diagonal
+                        if (Math.Abs(p.X - q.X) == 1 ^ Math.Abs(p.Y - q.Y) == 1) Bordering++; 
+                        if (Bordering > 3) break;
                     }
-                    if (Bordering <= 2) Outsides.Add(p);
+                    if (Bordering <= 3) Outsides.Add(p);
                 }
             }
 

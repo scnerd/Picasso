@@ -43,7 +43,7 @@ namespace Picasso
 
             //Just return circle from top to bottom, left to right
 
-            return ImgSec.Width / 2 * ImgSec.Height / 2 * Math.PI - ImgSec.PixelsUsed().Length;
+            return ImgSec.PixelsUsed().Length / (ImgSec.Width / 2 * ImgSec.Height / 2 * Math.PI);
         }
 
         private void HardFit()
