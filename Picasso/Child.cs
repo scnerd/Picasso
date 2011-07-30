@@ -168,7 +168,11 @@ namespace Picasso
             mScannedPx = 0;
             int MaxSize = ImgSec.Width * ImgSec.Height;
             frmImgSecDisplay DisplayOut = null;
-            Master.sInvokable.Invoke(Master.sAddable, new Func<System.Windows.Forms.Form>({return new frmImgSecDisplay();}), DisplayOut);
+            //DisplayOut.Show();
+            //Master.sInvokable.Invoke(Master.sAddable, null => {return new frmImgSecDisplay();}, DisplayOut);
+            MakeForm NewDisp = delegate() { return new frmImgSecDisplay(); };
+            AssignForm AssDisp = delegate(System.Windows.Forms.Form ToAssign) { DisplayOut = (frmImgSecDisplay)ToAssign; };
+            Master.sInvokable.Invoke(Master.sAddable, new object[] { NewDisp, AssDisp });
 #endif
             //Break the image into ImageSections
             List<ImageSection> Sections = new List<ImageSection>();

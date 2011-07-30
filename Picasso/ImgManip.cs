@@ -62,16 +62,17 @@ namespace Picasso
         /// 
         /// </summary>
         /// <param name="ResDetail"></param>
-        internal void ReduceGrid(int ResDetail)
+        internal double ReduceGrid(int ResDetail)
         {
             float i = (float)ResDetail/(float)(mImg.Height > mImg.Width?mImg.Height:mImg.Width);
-            Bitmap SmallRes = new Bitmap((int)(mImg.Width * i), (int)(mImg.Height * i));
+            Bitmap SmallRes = new Bitmap((int)Math.Floor(mImg.Width * i), (int)Math.Floor(mImg.Height * i));
             Graphics g = Graphics.FromImage(SmallRes);
             g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
             g.DrawImage(mImg, new System.Drawing.Rectangle(new Point(0,0),SmallRes.Size));
             g.Flush();
             g.Dispose();
             mImg = SmallRes;
+            return i;
         }
 
         /// <summary>

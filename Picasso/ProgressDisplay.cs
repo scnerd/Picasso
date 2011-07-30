@@ -33,7 +33,7 @@ namespace Picasso
             if (mProg != -1d)
             {
                 double d;
-                barProgress.Value = (int)((d = mProg) * 100d);
+                barProgress.Value = Math.Min((int)((d = mProg) * 100d), 100);
                 lblPx.Text = "Pixels: " + mScannedPx.ToString() + "/" + mTotPx.ToString();
                 lblChildren.Text = "Children: " + mChildren.ToString();
                 lblRemaining.Text = "Estimated Time Remaining: " + Estimate(d);

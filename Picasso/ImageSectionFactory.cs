@@ -1,4 +1,6 @@
-﻿using System;
+﻿//#define OUTPUTEACH
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -84,10 +86,21 @@ namespace Picasso
         /// <returns></returns>
         internal bool ValidPixel(Color Pixel)
         {
+            if (Pixel.A != 255) return false;
             int max = 0;
             Action<int> Check = i => max = Math.Max(i,max);
-            mColorMap.ForEach(l => {l.ForEach(i => {if(i != null)
-                Check((Math.Abs(i[1] - Pixel.R) + Math.Abs(i[2] - Pixel.G) + Math.Abs(i[3] - Pixel.B))/mDetail);});});
+            Color Temp;
+            mColorMap.ForEach(l =>
+            {
+                l.ForEach(i =>
+                    {
+                        if (i != null)
+                        {
+                            Temp = Color.FromArgb(i[0], i[1], i[2], i[3]);
+                            Check((int)((Math.Abs(Temp.GetHue() - Pixel.GetHue() * Constants.H_MOD) + Math.Abs(Temp.GetSaturation() - Pixel.GetSaturation() * Constants.S_MOD) + Math.Abs(Temp.GetBrightness() - Pixel.GetBrightness() * Constants.L_MOD)) / mDetail));
+                        }
+                    });
+            });
             //for each pixel, take math.abs(pixel.r - color.r) + math.abs(pixel.g - ...)... all / ColorDetail and see if it's greater than current max
             return max <= mForgive;
         }
@@ -289,7 +302,7 @@ namespace Picasso
         {
             if (mVisualReport != null && mVisDisplay != null)
             {
-                Show.Invoke();
+                Master.sInvokable.Invoke(new Action(mVisDisplay.Show));
                 mVisualReport.Start();
             }
             //We've got something, so now scan to find adjacent pixels.
@@ -297,7 +310,7 @@ namespace Picasso
             //Step 2: right from each of diag's to fill right side
             //Step 3: down from each of diag's to fill bottom
             //Step 4: around in circles around that, to pick up stragglers
-            Func<Color, Point, bool> CheckAdd = (c, p) => { if (this.ValidPixel(c)) { this.AddPixel(p, c); return true; } return false; };
+            Func<Color, Point, bool> CheckAdd = (c, p) => { if ( this.ValidPixel(c)) { this.AddPixel(p, c); return true; } return false; };
             int DiagMove = 0;
             while (CheckAdd(Graphic.GetPixel(x + DiagMove, y + DiagMove), new Point(x + DiagMove, y + DiagMove)))
                 DiagMove++; //This should work on the first pixel, but change to do{}while if it doesn't
@@ -331,10 +344,10 @@ namespace Picasso
                         if (p.Y - 1 >= 0 && !LatestAdds.Contains(new Point(p.X, p.Y - 1)) && !AllTested.Contains(new Point(p.X, p.Y - 1)))
                             if (CheckAdd(Graphic.GetPixel(p.X, p.Y - 1), new Point(p.X, p.Y - 1)))
                                 LatestAdds.Add(new Point(p.X, p.Y - 1));
-                        if (p.X + 1 >= 0 && !LatestAdds.Contains(new Point(p.X + 1, p.Y)) && !AllTested.Contains(new Point(p.X + 1, p.Y)))
+                        if (p.X + 1 < Graphic.Size.Width && !LatestAdds.Contains(new Point(p.X + 1, p.Y)) && !AllTested.Contains(new Point(p.X + 1, p.Y)))
                             if (CheckAdd(Graphic.GetPixel(p.X + 1, p.Y), new Point(p.X + 1, p.Y)))
                                 LatestAdds.Add(new Point(p.X + 1, p.Y));
-                        if (p.Y + 1 >= 0 && !LatestAdds.Contains(new Point(p.X, p.Y + 1)) && !AllTested.Contains(new Point(p.X, p.Y + 1)))
+                        if (p.Y + 1 < Graphic.Size.Height && !LatestAdds.Contains(new Point(p.X, p.Y + 1)) && !AllTested.Contains(new Point(p.X, p.Y + 1)))
                             if (CheckAdd(Graphic.GetPixel(p.X, p.Y + 1), new Point(p.X, p.Y + 1)))
                                 LatestAdds.Add(new Point(p.X, p.Y + 1));
                     }
@@ -348,8 +361,15 @@ namespace Picasso
             if (mVisualReport != null && mVisDisplay != null)
             {
                 mVisualReport.Stop();
-                Close.Invoke();
+                Master.sInvokable.Invoke(new Action(mVisDisplay.CloseSafe));
             }
+#if OUTPUTEACH
+            System.IO.FileStream fs = Master.sMaster.GenerateFile("ImgSec " + this.mSize.X + " " + this.mSize.Y + " " + DateTime.Now.ToFileTime() + ".bmp");
+            Master.sMaster.OriginalPixels(mAddedPixels.ToArray()).Save(fs, System.Drawing.Imaging.ImageFormat.Bmp);
+            fs.Flush();
+            fs.Close();
+            fs.Dispose();
+#endif
             return this.Generate();
 
             //

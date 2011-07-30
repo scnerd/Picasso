@@ -76,12 +76,15 @@ namespace Picasso
      *  Color forgiveness
      */
 
+    public delegate System.Windows.Forms.Form MakeForm();
+    public delegate void AssignForm(System.Windows.Forms.Form ToAssign);
+
     public class Master
     {
         #region Statics
 
         internal static Master sMaster;
-        internal static Func<Func<System.Windows.Forms.Form>, System.Windows.Forms.Form> sAddable;
+        internal static Action<MakeForm, AssignForm> sAddable;
         internal static System.Windows.Forms.Form sInvokable;
 
         private static int NEXTID;
@@ -114,12 +117,13 @@ namespace Picasso
 
         private const string REGISTERPATH = @"MasterLog.txt",
             DATASUBDIR = @"Data\";
-        private string mImagePath, mLogPath;
+        private string mDirPath, mImagePath, mLogPath;
         private int ID;
 
         private LogWriter mLogger;
         private Bitmap mBaseImage,
             mLeftover;
+        private double mScale;
 
         private Child[] mChildren;
 
@@ -134,16 +138,16 @@ namespace Picasso
             // Copy image to a set, standard location
             // Generate a log file there
             ID = GetID;
-            string Direc = DATASUBDIR + "PicProj " + ID + @"\";
-            Directory.CreateDirectory(Direc);
-            Image.FromFile(ImageFile).Save(mImagePath = Direc + "image.bmp", System.Drawing.Imaging.ImageFormat.Bmp);
-            mLogPath = Direc + "log.txt";
-            mLogger = new LogWriter(mLogPath,true);
+            mDirPath = DATASUBDIR + "PicProj " + ID + @"\";
+            Directory.CreateDirectory(mDirPath);
+            Image.FromFile(ImageFile).Save(mImagePath = mDirPath + "image.bmp", System.Drawing.Imaging.ImageFormat.Bmp);
+            mLogPath = mDirPath + "log.txt";
+            mLogger = new LogWriter(mLogPath, true);
             mBaseImage = (Bitmap)Bitmap.FromFile(mImagePath);
             //mLeftover = (Bitmap)mBaseImage.Clone();
         }
 
-        public Master(string ImageFile, Func<Func<System.Windows.Forms.Form>, System.Windows.Forms.Form> Adder, System.Windows.Forms.Form Invokable)
+        public Master(string ImageFile, Action<MakeForm, AssignForm> Adder, System.Windows.Forms.Form Invokable)
             : this(ImageFile)
         {
             sAddable = Adder;
@@ -169,7 +173,7 @@ namespace Picasso
             mLeftover = (Bitmap)mBaseImage.Clone();
             ImgManip Man = new ImgManip(ref mLeftover);
             Man.ReduceColors(mColorDetail);
-            Man.ReduceGrid(mResDetail);
+            mScale = Man.ReduceGrid(mResDetail);
             mLeftover = Man.GetImage;
             Bitmap Clear = new Bitmap(mLeftover.Width, mLeftover.Height);
             Graphics.FromImage(Clear).Clear(Constants.ALPHA_FULL);
@@ -256,6 +260,13 @@ namespace Picasso
 
         #endregion
 
+        internal FileStream GenerateFile(string FileName)
+        {
+            if (FileName.Contains("\\") || FileName.Contains("/"))
+                throw new InvalidOperationException("Only file names, not paths are allowed");
+            return File.Create(mDirPath + FileName);
+        }
+
         public enum RenderState
         {
             Original,
@@ -337,10 +348,17 @@ namespace Picasso
         /// <returns></returns>
         internal Bitmap OriginalPixels(Point[] Pts)
         {
-            System.Drawing.Rectangle Size = Constants.PtsToRect(Pts);
-            Bitmap B = new Bitmap(mBaseImage.Width, mBaseImage.Height);
-            foreach (Point p in Pts)
-                B.SetPixel(p.X, p.Y, mBaseImage.GetPixel(p.X, p.Y));
+            Bitmap B;
+            lock (Pts)
+            {
+                System.Drawing.Rectangle Size = Constants.PtsToRect(Pts);
+                lock (this.mBaseImage)
+                {
+                    B = new Bitmap(mBaseImage.Width, mBaseImage.Height);
+                    foreach (Point p in Pts)
+                        B.SetPixel((int)Math.Floor(p.X / mScale), (int)Math.Floor(p.Y / mScale), mBaseImage.GetPixel((int)Math.Floor(p.X / mScale), (int)Math.Floor(p.Y / mScale)));
+                }
+            }
             return B;
         }
 

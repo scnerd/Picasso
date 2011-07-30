@@ -38,8 +38,16 @@ namespace Picasso_DissectGUI
         {
             List<Form> SubForms = new List<Form>();
             //Action<Form, Form> AddForm = (v, f) => { v = f; SubForms.Add(v); };
-            Func<Func<Form>, Form> NewForm = c => { Form f = c(); SubForms.Add(f); return f; };
-            M = new Master(ImgPath, AddForm, this);
+            Action<Picasso.MakeForm, Picasso.AssignForm> NewForm =
+                (Construct, AssignToVar) =>
+                {
+                    Form f = Construct(); 
+                    SubForms.Add(f); 
+                    this.AddOwnedForm(f);
+                    f.Owner = this;
+                    AssignToVar(f);
+                };
+            M = new Master(ImgPath, NewForm, this);
             //int ChildrenCount;
             Watch = new Stopwatch();
             Action A = M.GenerateChildren;
