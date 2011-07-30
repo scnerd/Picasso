@@ -30,7 +30,7 @@ namespace Picasso
         internal const int DEFAULT_COLORDETAIL = 25; // How many levels to divide each color channel of the image into
         internal const int DEFAULT_RESOLUTIONDETAIL = 512; // How many divisions to cut the image into, at the longer dimension
         internal const int DEFAULT_MINMARGIN = 2; // How many adjecent blocks must be within the forgiveness range so that a block doesn't get generalized as noise
-        internal const int DEFAULT_COLORFORGIVENESS = 4; // The maximum sum number of color intervals difference between two adjacent blocks to be considered the same color
+        internal const int DEFAULT_COLORFORGIVENESS = 15; // The maximum sum number of color intervals difference between two adjacent blocks to be considered the same color
         internal const string EOL = "\r\n";
         internal const double H_MOD = 3.0d;
         internal const double S_MOD = 2.0d;

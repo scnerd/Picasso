@@ -38,6 +38,7 @@
             this.picDisplay.Location = new System.Drawing.Point(0, 0);
             this.picDisplay.Name = "picDisplay";
             this.picDisplay.Size = new System.Drawing.Size(512, 512);
+            this.picDisplay.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picDisplay.TabIndex = 0;
             this.picDisplay.TabStop = false;
             // 

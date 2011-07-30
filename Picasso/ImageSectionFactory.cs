@@ -328,7 +328,7 @@ namespace Picasso
             //For each pixel that's been added so far, check all adjacent pixels not checked yet and checkadd them
             //Add the successes to another list and foreach through that one as well. Repeat.
             { //These parenthesis are just to keep these large array variables from lingering too long
-                List<Point> LatestAdds = new List<Point>(), AllTested = new List<Point>();
+                List<Point> LatestAdds = new List<Point>(), AllTested = new List<Point>(), Failed = new List<Point>();;
                 LatestAdds.AddRange(this.SelectedPixels());
                 Point[] CurrentTesting;
                 do
@@ -336,20 +336,37 @@ namespace Picasso
                     AllTested.AddRange(LatestAdds);
                     CurrentTesting = LatestAdds.ToArray();
                     LatestAdds = new List<Point>();
+                    Point Temp;
                     foreach (Point p in CurrentTesting)
                     {
-                        if (p.X - 1 >= 0 && !LatestAdds.Contains(new Point(p.X - 1, p.Y)) && !AllTested.Contains(new Point(p.X - 1, p.Y)))
-                            if (CheckAdd(Graphic.GetPixel(p.X - 1, p.Y), new Point(p.X - 1, p.Y)))
-                                LatestAdds.Add(new Point(p.X - 1, p.Y));
-                        if (p.Y - 1 >= 0 && !LatestAdds.Contains(new Point(p.X, p.Y - 1)) && !AllTested.Contains(new Point(p.X, p.Y - 1)))
-                            if (CheckAdd(Graphic.GetPixel(p.X, p.Y - 1), new Point(p.X, p.Y - 1)))
-                                LatestAdds.Add(new Point(p.X, p.Y - 1));
-                        if (p.X + 1 < Graphic.Size.Width && !LatestAdds.Contains(new Point(p.X + 1, p.Y)) && !AllTested.Contains(new Point(p.X + 1, p.Y)))
-                            if (CheckAdd(Graphic.GetPixel(p.X + 1, p.Y), new Point(p.X + 1, p.Y)))
-                                LatestAdds.Add(new Point(p.X + 1, p.Y));
-                        if (p.Y + 1 < Graphic.Size.Height && !LatestAdds.Contains(new Point(p.X, p.Y + 1)) && !AllTested.Contains(new Point(p.X, p.Y + 1)))
-                            if (CheckAdd(Graphic.GetPixel(p.X, p.Y + 1), new Point(p.X, p.Y + 1)))
-                                LatestAdds.Add(new Point(p.X, p.Y + 1));
+                        Temp = new Point(p.X - 1, p.Y);
+                        if (Temp.X >= 0 && !LatestAdds.Contains(Temp) && !Failed.Contains(Temp) && !AllTested.Contains(Temp))
+                        {
+                            if (CheckAdd(Graphic.GetPixel(Temp.X, Temp.Y), Temp))
+                                LatestAdds.Add(Temp);
+                            else Failed.Add(Temp);
+                        }
+                        Temp = new Point(p.X, p.Y - 1);
+                        if (Temp.Y >= 0 && !LatestAdds.Contains(Temp) && !Failed.Contains(Temp) && !AllTested.Contains(Temp))
+                        {
+                            if (CheckAdd(Graphic.GetPixel(Temp.X, Temp.Y), Temp))
+                                LatestAdds.Add(Temp);
+                            else Failed.Add(Temp);
+                        }
+                        Temp = new Point(p.X + 1, p.Y);
+                        if (Temp.X < Graphic.Size.Width && !LatestAdds.Contains(Temp) && !Failed.Contains(Temp) && !AllTested.Contains(Temp))
+                        {
+                            if (CheckAdd(Graphic.GetPixel(Temp.X, Temp.Y), Temp))
+                                LatestAdds.Add(Temp);
+                            else Failed.Add(Temp);
+                        }
+                        Temp = new Point(p.X, p.Y + 1);
+                        if (Temp.Y < Graphic.Size.Height && !LatestAdds.Contains(Temp) && !Failed.Contains(Temp) && !AllTested.Contains(Temp))
+                        {
+                            if (CheckAdd(Graphic.GetPixel(Temp.X, Temp.Y), Temp))
+                                LatestAdds.Add(Temp);
+                            else Failed.Add(Temp);
+                        }
                     }
                 } while (LatestAdds.Count > 0);
             }
