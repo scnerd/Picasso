@@ -70,6 +70,7 @@
     <None Include="Diagram.cd" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="HSB Definitions.txt" />
     <Content Include="Test Images\22.jpg" />
     <Content Include="Test Images\foto01.jpg" />
     <Content Include="Test Images\picasso-donna_con_cappello_verde.jpg" />

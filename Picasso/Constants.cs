@@ -27,14 +27,14 @@ namespace Picasso
 {
     internal static class Constants
     {
-        internal const int DEFAULT_COLORDETAIL = 25; // How many levels to divide each color channel of the image into
-        internal const int DEFAULT_RESOLUTIONDETAIL = 128; // How many divisions to cut the image into, at the longer dimension
-        internal const int DEFAULT_MINMARGIN = 2; // How many adjecent blocks must be within the forgiveness range so that a block doesn't get generalized as noise
-        internal const int DEFAULT_COLORFORGIVENESS = 12; // The maximum sum number of color intervals difference between two adjacent blocks to be considered the same color
+        internal const int DEFAULT_COLORDETAIL = 10; // How many levels to divide each color channel of the image into
+        internal const int DEFAULT_RESOLUTIONDETAIL = 256; // How many divisions to cut the image into, at the longer dimension
+        internal const int DEFAULT_MINMARGIN = 100; // How many adjecent blocks must be within the forgiveness range so that a block doesn't get generalized as noise
+        internal const int DEFAULT_COLORFORGIVENESS = 30; // The maximum sum number of color intervals difference between two adjacent blocks to be considered the same color
         internal const string EOL = "\r\n";
-        internal const double H_MOD = 3.0d;
-        internal const double S_MOD = 2.0d;
-        internal const double L_MOD = .25d;
+        internal const double H_MOD = 2.0d;
+        internal const double S_MOD = .75d;
+        internal const double L_MOD = 0.5d;
         internal static readonly Color ALPHA_EMPTY = Color.FromArgb(0, 0, 0, 0);
         internal static readonly Color ALPHA_FULL = Color.FromArgb(0xFF, 0xFF, 0xFF, 0xFF);
 

@@ -1,4 +1,4 @@
-﻿//#define OUTPUTEACH
+﻿#define OUTPUTEACH
 
 using System;
 using System.Collections.Generic;
@@ -90,7 +90,7 @@ namespace Picasso
         {
             if (Pixel.A != 255) return false;
             int max = 0;
-            Action<int> Check = i => max = Math.Max(i,max);
+            Action<int> Check = i => max = Math.Max(i, max);
             Color Temp;
             mColorMap.ForEach(l =>
             {
@@ -312,7 +312,7 @@ namespace Picasso
             //Step 2: right from each of diag's to fill right side
             //Step 3: down from each of diag's to fill bottom
             //Step 4: around in circles around that, to pick up stragglers
-            Func<Color, Point, bool> CheckAdd = (c, p) => { if ( this.ValidPixel(c)) { this.AddPixel(p, c); return true; } return false; };
+            Func<Color, Point, bool> CheckAdd = (c, p) => { if (this.ValidPixel(c)) { this.AddPixel(p, c); return true; } return false; };
             int DiagMove = 0;
             while (CheckAdd(Graphic.GetPixel(x + DiagMove, y + DiagMove), new Point(x + DiagMove, y + DiagMove)))
                 DiagMove++; //This should work on the first pixel, but change to do{}while if it doesn't
@@ -330,7 +330,7 @@ namespace Picasso
             //For each pixel that's been added so far, check all adjacent pixels not checked yet and checkadd them
             //Add the successes to another list and foreach through that one as well. Repeat.
             { //These parenthesis are just to keep these large array variables from lingering too long
-                List<Point> LatestAdds = new List<Point>(), AllTested = new List<Point>(), Failed = new List<Point>();;
+                List<Point> LatestAdds = new List<Point>(), AllTested = new List<Point>(), Failed = new List<Point>(); ;
                 LatestAdds.AddRange(this.SelectedPixels());
                 Point[] CurrentTesting;
                 do
@@ -376,12 +376,14 @@ namespace Picasso
             //
             //Almost done
             //
-            this.SubtractFrom(ref Graphic);
             if (mVisualReport != null && mVisDisplay != null)
             {
                 mVisualReport.Stop();
                 Master.sInvokable.Invoke(new Action(mVisDisplay.CloseSafe));
             }
+            if (this.mAddedPixels.Count <= Master.sMaster.MinMargin)
+                return null;
+            this.SubtractFrom(ref Graphic);
 #if OUTPUTEACH
             System.IO.FileStream fs = Master.sMaster.GenerateFile("ImgSec " + this.mSize.X + " " + this.mSize.Y + " " + DateTime.Now.ToFileTime() + ".bmp");
             Master.sMaster.OriginalPixels(mAddedPixels.ToArray()).Save(fs, System.Drawing.Imaging.ImageFormat.Bmp);

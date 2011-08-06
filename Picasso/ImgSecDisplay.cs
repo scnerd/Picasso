@@ -1,4 +1,6 @@
-﻿using System;
+﻿//#define DISPHIGHCONT
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -24,9 +26,14 @@ namespace Picasso
         internal void DisplayImage(Bitmap Picture)
         {
             IsRunning = true;
-            mImg = Picture;
-            picDisplay.Image = mImg;
+#if DISPHIGHCONT
+            //TEST CODE
+            picDisplay.Image = Master.sMaster.Render(Master.RenderState.EditOrig);
+#else
+            //mImg = Picture;
+            picDisplay.Image = mImg = Picture;
             //this.Invoke(UpdateDel);
+#endif
             IsRunning = false;
         }
 

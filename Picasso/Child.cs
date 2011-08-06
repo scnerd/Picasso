@@ -198,7 +198,8 @@ namespace Picasso
                     }
                 }
             }
-            
+
+            Sections.RemoveAll(imsec => imsec == null);
             //Figure out if it just selected the whole thing. If so, cancel the scan
             if (Sections.Count == 1 && Sections[0].Size == ImgSec.Size)
                 return new Child[0];
