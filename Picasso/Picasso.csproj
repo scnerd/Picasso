@@ -134,6 +134,10 @@
       <Project>{B4D14619-40BC-4D8E-BE63-51BB35187DA3}</Project>
       <Name>CannyEdgeDetection</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WatershedTransform\WatershedTransform.csproj">
+      <Project>{DF89547A-3282-4B63-A890-F93A14DB44BC}</Project>
+      <Name>WatershedTransform</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
