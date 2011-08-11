@@ -1,0 +1,13 @@
+obj\Debug\ResolveAssemblyReference.cache
+obj\Debug\Interop.Project1.dll
+obj\Debug\Interop.VBRUN.dll
+obj\Debug\CannyEdgeDetection.csproj.ResolveComReference.cache
+obj\Debug\CannyEdgeDetection.csproj.GenerateResource.Cache
+bin\Debug\Interop.Project1.dll
+bin\Debug\Interop.VBRUN.dll
+obj\Debug\CannyEdgeDetectionCSharp.Mainform.resources
+obj\Debug\CannyEdgeDetectionCSharp.Properties.Resources.resources
+bin\Debug\CannyEdgeDetection.exe
+bin\Debug\CannyEdgeDetection.pdb
+obj\Debug\CannyEdgeDetection.exe
+obj\Debug\CannyEdgeDetection.pdb

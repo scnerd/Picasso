@@ -89,6 +89,52 @@
       <DependentUpon>ProgressDisplay.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AForge.NET\Framework\Sources\Controls\Controls.csproj">
+      <Project>{4CCA6844-9102-4A3B-8148-EA3D359B2586}</Project>
+      <Name>Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AForge.NET\Framework\Sources\Core\Core.csproj">
+      <Project>{631AC093-430F-45F4-BA0C-AF0F0405918A}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AForge.NET\Framework\Sources\Fuzzy\Fuzzy.csproj">
+      <Project>{B631038F-E12C-4D0D-8B25-FF7F62FE62D1}</Project>
+      <Name>Fuzzy</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AForge.NET\Framework\Sources\Genetic\Genetic.csproj">
+      <Project>{2EFAA327-1789-4438-B9F5-E83ACAE12DB2}</Project>
+      <Name>Genetic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AForge.NET\Framework\Sources\Imaging\Imaging.csproj">
+      <Project>{C6A8B9AE-0749-41C7-8FF9-02C156696F45}</Project>
+      <Name>Imaging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AForge.NET\Framework\Sources\MachineLearning\MachineLearning.csproj">
+      <Project>{D42A814D-E178-48D0-9125-ED20151B2E45}</Project>
+      <Name>MachineLearning</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AForge.NET\Framework\Sources\Math\Math.csproj">
+      <Project>{C0FAF524-72E4-46F7-8C1B-A6B74DEC5EBE}</Project>
+      <Name>Math</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AForge.NET\Framework\Sources\Neuro\Neuro.csproj">
+      <Project>{02B5E453-2085-4E41-86D9-C8E8A03FB1B9}</Project>
+      <Name>Neuro</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AForge.NET\Framework\Sources\Video\Video.csproj">
+      <Project>{809725DC-6502-4732-A51C-DEB7FEA12975}</Project>
+      <Name>Video</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AForge.NET\Framework\Sources\Vision\Vision.csproj">
+      <Project>{B99CBE2E-BAAD-45D5-8A84-CAA6A2286C0B}</Project>
+      <Name>Vision</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Iris Recognition\CannyEdgeDetection.csproj">
+      <Project>{B4D14619-40BC-4D8E-BE63-51BB35187DA3}</Project>
+      <Name>CannyEdgeDetection</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

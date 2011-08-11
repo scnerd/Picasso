@@ -1,0 +1,12 @@
+C:\Users\SCNerd\Desktop\David Backup 8-26-10\My Dropbox\VS Projects\Canny Edge Detection C#\Iris Recognition\obj\Debug\Interop.VBRUN.dll
+C:\Users\SCNerd\Desktop\David Backup 8-26-10\My Dropbox\VS Projects\Canny Edge Detection C#\Iris Recognition\obj\Debug\CannyEdgeDetection.csproj.ResolveComReference.cache
+C:\Users\SCNerd\Desktop\David Backup 8-26-10\My Dropbox\VS Projects\Canny Edge Detection C#\Iris Recognition\obj\Debug\CannyEdgeDetection.exe
+C:\Users\SCNerd\Desktop\David Backup 8-26-10\My Dropbox\VS Projects\Canny Edge Detection C#\Iris Recognition\obj\Debug\CannyEdgeDetection.pdb
+C:\Users\SCNerd\Desktop\David Backup 8-26-10\My Dropbox\VS Projects\Canny Edge Detection C#\Iris Recognition\bin\Debug\CannyEdgeDetection.exe
+C:\Users\SCNerd\Desktop\David Backup 8-26-10\My Dropbox\VS Projects\Canny Edge Detection C#\Iris Recognition\bin\Debug\CannyEdgeDetection.pdb
+C:\Users\SCNerd\Desktop\David Backup 8-26-10\My Dropbox\VS Projects\Canny Edge Detection C#\Iris Recognition\bin\Debug\Interop.VBRUN.dll
+C:\Users\SCNerd\Desktop\David Backup 8-26-10\My Dropbox\VS Projects\Canny Edge Detection C#\Iris Recognition\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\SCNerd\Desktop\David Backup 8-26-10\My Dropbox\VS Projects\Canny Edge Detection C#\Iris Recognition\obj\Debug\CannyEdgeDetection.Mainform.resources
+C:\Users\SCNerd\Desktop\David Backup 8-26-10\My Dropbox\VS Projects\Canny Edge Detection C#\Iris Recognition\obj\Debug\CannyEdgeDetection.Properties.Resources.resources
+C:\Users\SCNerd\Desktop\David Backup 8-26-10\My Dropbox\VS Projects\Canny Edge Detection C#\Iris Recognition\obj\Debug\ResGen.read.1.tlog
+C:\Users\SCNerd\Desktop\David Backup 8-26-10\My Dropbox\VS Projects\Canny Edge Detection C#\Iris Recognition\obj\Debug\ResGen.write.1.tlog

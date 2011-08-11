@@ -1,0 +1,15 @@
+D:\Project\Iris Recognition\Iris Recognition\Iris Recognition\obj\Debug\Iris Recognition.exe
+D:\Project\Iris Recognition\Iris Recognition\Iris Recognition\obj\Debug\Iris Recognition.pdb
+D:\Project\Iris Recognition\Iris Recognition\Iris Recognition\bin\Debug\Iris Recognition.exe
+D:\Project\Iris Recognition\Iris Recognition\Iris Recognition\bin\Debug\Iris Recognition.pdb
+D:\Project\Iris Recognition\Iris Recognition\Iris Recognition\bin\Debug\Interop.Project1.dll
+D:\Project\Iris Recognition\Iris Recognition\Iris Recognition\bin\Debug\Interop.VBRUN.dll
+D:\Project\Iris Recognition\Iris Recognition\Iris Recognition\bin\Debug\AxInterop.Project1.dll
+D:\Project\Iris Recognition\Iris Recognition\Iris Recognition\obj\Debug\ResolveAssemblyReference.cache
+D:\Project\Iris Recognition\Iris Recognition\Iris Recognition\obj\Debug\Interop.Project1.dll
+D:\Project\Iris Recognition\Iris Recognition\Iris Recognition\obj\Debug\Interop.VBRUN.dll
+D:\Project\Iris Recognition\Iris Recognition\Iris Recognition\obj\Debug\AxInterop.Project1.dll
+D:\Project\Iris Recognition\Iris Recognition\Iris Recognition\obj\Debug\Iris Recognition.csproj.ResolveComReference.cache
+D:\Project\Iris Recognition\Iris Recognition\Iris Recognition\obj\Debug\Iris_Recognition.Mainform.resources
+D:\Project\Iris Recognition\Iris Recognition\Iris Recognition\obj\Debug\Iris_Recognition.Properties.Resources.resources
+D:\Project\Iris Recognition\Iris Recognition\Iris Recognition\obj\Debug\Iris Recognition.csproj.GenerateResource.Cache

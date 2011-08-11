@@ -1,0 +1,15 @@
+obj\Debug\ResolveAssemblyReference.cache
+obj\Debug\Interop.Project1.dll
+obj\Debug\Interop.VBRUN.dll
+obj\Debug\AxInterop.Project1.dll
+obj\Debug\Iris Recognition.csproj.ResolveComReference.cache
+obj\Debug\Iris_Recognition.Mainform.resources
+obj\Debug\Iris_Recognition.Properties.Resources.resources
+obj\Debug\Iris Recognition.csproj.GenerateResource.Cache
+bin\Debug\Iris Recognition.exe
+bin\Debug\Iris Recognition.pdb
+bin\Debug\Interop.Project1.dll
+bin\Debug\Interop.VBRUN.dll
+bin\Debug\AxInterop.Project1.dll
+obj\Debug\Iris Recognition.exe
+obj\Debug\Iris Recognition.pdb

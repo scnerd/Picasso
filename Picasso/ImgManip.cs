@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Drawing;
+using AForge.Imaging.ColorReduction;
 
 /*
  * Author: David M
@@ -44,20 +45,24 @@ namespace Picasso
         /// 
         /// </summary>
         /// <param name="ColDetail"></param>
+        //internal void ReduceColors(int ColDetail)
+        //{
+        //    Color c;
+        //    //Func<byte, byte> Round = i => (byte)(i + (i % ColDetail > ColDetail/2 ? ColDetail - i : i - ColDetail));
+        //    for (int y = 0; y < mBase.Height; y++)
+        //    {
+        //        for (int x = 0; x < mBase.Width; x++)
+        //        {
+        //            //c = mBase.GetPixel(x, y);
+        //            //Color c = Color.FromArgb(Round(c.R), Round(c.G), Round(c.B));
+        //            c = RoundHue(mBase.GetPixel(x, y), ColDetail);
+        //            mImg.SetPixel(x, y, c);
+        //        }
+        //    }
+        //}
         internal void ReduceColors(int ColDetail)
         {
-            Color c;
-            //Func<byte, byte> Round = i => (byte)(i + (i % ColDetail > ColDetail/2 ? ColDetail - i : i - ColDetail));
-            for (int y = 0; y < mBase.Height; y++)
-            {
-                for (int x = 0; x < mBase.Width; x++)
-                {
-                    //c = mBase.GetPixel(x, y);
-                    //Color c = Color.FromArgb(Round(c.R), Round(c.G), Round(c.B));
-                    c = RoundHue(mBase.GetPixel(x, y), ColDetail);
-                    mImg.SetPixel(x, y, c);
-                }
-            }
+            
         }
 
         /// <summary>

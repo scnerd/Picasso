@@ -1,0 +1,27 @@
+brightness = Max(r,g,b)/255*100
+saturation = (1-Min(r,g,b)/Max(r,g,b))*100
+hue =	n=000-060 -> g = Min(r,g,b) + (n%60)/60 * (Max(r,g,b)-Min(r,g,b))
+		Min=b,Max=r
+
+	n=061-120 -> r = Min(r,g,b) + (60-n%60)/60 * (Max(r,g,b)-Min(r,g,b))
+		Min=b,Max=g
+
+	n=121-180 -> b = Min(r,g,b) + (n%60)/60 * (Max(r,g,b)-Min(r,g,b))
+		Min=r,Max=g
+
+	n=181-240 -> g = Min(r,g,b) + (60-n%60)/60 * (Max(r,g,b)-Min(r,g,b))
+		Min=r,Max=b
+
+	n=241-300 -> r = Min(r,g,b) + (n%60)/60 * (Max(r,g,b)-Min(r,g,b))
+		Min=g,max=b
+
+	n=301-360 -> b = Min(r,g,b) + (60-n%60)/60 * (Max(r,g,b)-Min(r,g,b))
+		Min=g,max=r
+
+so, hue:
+0-60	 g = b + (n%60) / 60 * (r-b)
+61-120	 r = b + (60-n%60) / 60 * (g-b)
+121-180	 b = r + (n%60) / 60 * (g-r)
+181-240	 g = r + (60-n%60) / 60 * (b-r)
+241-300	 r = g + (n%60) / 60 * (b-g)
+301-360	 b = g + (60-n%60) / 60 * (r-g)
